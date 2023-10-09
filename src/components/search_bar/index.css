@@ -1,0 +1,10 @@
+.serach-bar {
+    border: solid 1px #C5CAE9;
+    width: 330px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.serach-bar > p {
+    color: #757575;
+}
