@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import './index.css';
-import { AiOutlineSearch } from 'react-icons/ai';
 
 const SearchBar = () => {
+
+    const [input, setInput] = useState("");
+
+    const onChangeInput = (e) => {
+        setInput(e.target.value);
+    }
+
     return(
-        <div className="d-flex serach-bar justify-content-between p-2">
-            <p className="align-self-center m-0">Buscar publicaciones</p>
-            <AiOutlineSearch className="align-self-center m-0" size={20} color={"#C5CAE9"}/>
-        </div>
+        <form className="d-flex serach-bar gap-1 form-inline my-2 my-lg-0">
+            <input className="form-control mr-sm-2" type="search" placeholder="Buscar publicaciones" onChange={onChangeInput}/>
+        </form>
     );
 }
 
