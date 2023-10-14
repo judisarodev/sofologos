@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './index.css';
 import { RiShareForwardLine } from 'react-icons/ri';
 import { BsEye } from 'react-icons/bs';
 import { AiTwotoneHeart, AiOutlineHeart } from 'react-icons/ai';
+import { PageContext } from '../../context/PageContext';
+
 
 const PostCard = ({ info }) => {
-    const { title, date, summary, views, likes } = info; 
+    const { id, title, date, summary, views, likes } = info; 
     const [heart, setHeart] = useState(false);
+
+    const { setToPost } = useContext(PageContext);
 
     const onLike = () => {
         setHeart(!heart);
     }
 
     return(
-        <div className='card--container d-flex flex-column gap-1'>
+        <div onClick={() => setToPost(id) } className='card--container d-flex flex-column gap-1'>
             <div className='d-flex justify-content-between'>
                 <p className='card__date m-0'>{date}</p>
                 <RiShareForwardLine color='#757575' size={15}/>

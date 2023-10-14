@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SearchBar } from "../../components/search_bar";
 import { DropDownButton } from "../../components/drop_down_button";
 import { HorizontalList } from "../../components/horizontal_list";
