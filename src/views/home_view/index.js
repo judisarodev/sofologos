@@ -5,6 +5,7 @@ import { HorizontalList } from "../../components/horizontal_list";
 import { PostCard } from "../../components/post_card";
 import { posts } from "../../data";
 import './index.css';
+import { SingUpForm } from "../../components/sing-up-form";
 
 const HomeView = () => {
 
@@ -45,6 +46,9 @@ const HomeView = () => {
                     </div>
                 )}
             </div>
+            <p className="view-more">{'Ver más'}</p>
+
+            <SingUpForm /> 
         </div>
     );
 }

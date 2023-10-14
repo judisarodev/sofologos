@@ -4,6 +4,11 @@
     padding-bottom: 5px;
     margin-bottom: 30px;
 }
+
+.card--container:hover{
+    cursor:pointer; 
+}
+
 .card__date{
     color: #757575;
 }
@@ -12,6 +17,9 @@
     font-weight: 700;
     color: black;
 }
+.card__title:hover{
+    text-decoration: underline;
+} 
 .card__summary{
     text-align: justify;
     color: #757575; 
