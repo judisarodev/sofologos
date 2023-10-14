@@ -1,0 +1,12 @@
+.about-us{
+    margin-top: 20px;
+    max-width: 750px;
+}
+.about-us__title{
+    color: #303F9F;
+    font-weight: 500;
+}
+
+.about-us__text{
+    color: #757575;
+}
