@@ -3,6 +3,8 @@ import { SearchBar } from "../../components/search_bar";
 import { DropDownButton } from "../../components/drop_down_button";
 import './index.css';
 import { HorizontalList } from "../../components/horizontal_list";
+import { PostCard } from "../../components/post_card";
+import { posts } from "../../data";
 
 const HomeView = () => {
 
@@ -34,6 +36,12 @@ const HomeView = () => {
                     <SearchBar/>
                     {isSmall && <DropDownButton/>}
                 </div>
+            </div>
+
+            <div>
+                {posts.map((info) => 
+                    <PostCard info={info} />
+                )}
             </div>
         </div>
     );
