@@ -26,9 +26,11 @@ const HomeView = () => {
 
     return(
         <div className="container">
-            <div className="d-flex justify-content-between">
-                {!isSmall && <HorizontalList /> }
-                <div className="d-flex flex-column">
+            <div className="row">
+                <div className="col-md-8 col-sm-12">
+                    {!isSmall && <HorizontalList /> }
+                </div>
+                <div className="col-md-4 col-sm-12">
                     <SearchBar/>
                     {isSmall && <DropDownButton/>}
                 </div>
