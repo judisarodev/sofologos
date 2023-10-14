@@ -4,7 +4,7 @@ import { AboutUsView } from "../about_us_view";
 
 const ViewContainer = ({ page }) => {
     return(
-        <div style={{height: '100vh'}}>
+        <div>
             {page.HOME && <HomeView />}
             {page.ABOUT_US && <AboutUsView />}
         </div>

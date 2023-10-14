@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { SearchBar } from "../../components/search_bar";
 import { DropDownButton } from "../../components/drop_down_button";
-import './index.css';
 import { HorizontalList } from "../../components/horizontal_list";
 import { PostCard } from "../../components/post_card";
 import { posts } from "../../data";
+import './index.css';
 
 const HomeView = () => {
 
@@ -12,7 +12,7 @@ const HomeView = () => {
 
     useEffect(() => {
         function handleResize() {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 992) {
                 setIsSmall(true);
             } else {
                 setIsSmall(false);
@@ -28,19 +28,21 @@ const HomeView = () => {
 
     return(
         <div className="container">
-            <div className="row">
-                <div className="col-md-8 col-sm-12">
+            <div className="row container--serching-bar">
+                <div className="col-lg-8 col-md-12">
                     {!isSmall && <HorizontalList /> }
                 </div>
-                <div className="col-md-4 col-sm-12">
+                <div className="col-lg-4 col-md-12">
                     <SearchBar/>
                     {isSmall && <DropDownButton/>}
                 </div>
             </div>
-
-            <div>
+        
+            <div className="row m-2">
                 {posts.map((info) => 
-                    <PostCard info={info} />
+                    <div className="col-lg-6 col-md-12 d-flex justify-content-center">
+                        <PostCard info={info} />
+                    </div>
                 )}
             </div>
         </div>

@@ -17,4 +17,14 @@ function getCard(){
 
 export const posts = [
     getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
+    getCard(),
 ];
