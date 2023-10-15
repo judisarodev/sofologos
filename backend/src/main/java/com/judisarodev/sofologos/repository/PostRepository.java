@@ -7,5 +7,4 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     Post save(Post user);
     Post findById(int postId);
     void deleteById(int postId);
-
 }
