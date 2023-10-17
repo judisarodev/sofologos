@@ -23,7 +23,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id", updatable = false, insertable = false)
     private Category category;
 
     public Integer getPostId() {
