@@ -8,14 +8,15 @@ public class Follower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "follower_id")
-    private int followerId;
+    private Integer followerId;
+    @Column(length = 60, nullable = false)
     private String email;
 
-    public int getFollowerId() {
+    public Integer getFollowerId() {
         return followerId;
     }
 
-    public void setFollowerId(int followerId) {
+    public void setFollowerId(Integer followerId) {
         this.followerId = followerId;
     }
 

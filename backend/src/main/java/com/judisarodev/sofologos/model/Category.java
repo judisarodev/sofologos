@@ -10,7 +10,8 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private int categoryId;
+    private Integer categoryId;
+    @Column(length = 30, nullable = false)
     private String name;
     @OneToMany(mappedBy = "category")
     private ArrayList<Post> posts;
@@ -23,11 +24,11 @@ public class Category {
         this.posts = posts;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

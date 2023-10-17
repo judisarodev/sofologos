@@ -10,10 +10,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private Integer userId;
     @Column(name = "user_type_id")
-    private int userTypeId;
+    private Integer userTypeId;
+    @Column(length = 20, nullable = false)
     private String username;
+    @Column(length = 20, nullable = false)
     private String password;
     @OneToMany(mappedBy = "user")
     private ArrayList<Post> posts;
@@ -26,19 +28,19 @@ public class User {
         this.posts = posts;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public int getUserTypeId() {
+    public Integer getUserTypeId() {
         return userTypeId;
     }
 
-    public void setUserTypeId(int userTypeId) {
+    public void setUserTypeId(Integer userTypeId) {
         this.userTypeId = userTypeId;
     }
 

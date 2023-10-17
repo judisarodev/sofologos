@@ -8,14 +8,15 @@ public class UserType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_type_id")
-    private int userTypeId;
+    private Integer userTypeId;
+    @Column(nullable = false, length = 30)
     private String name;
 
-    public int getUserTypeId() {
+    public Integer getUserTypeId() {
         return userTypeId;
     }
 
-    public void setUserTypeId(int userTypeId) {
+    public void setUserTypeId(Integer userTypeId) {
         this.userTypeId = userTypeId;
     }
 
