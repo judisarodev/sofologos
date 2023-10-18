@@ -1,10 +1,10 @@
 package com.judisarodev.sofologos.repository;
 
 import com.judisarodev.sofologos.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.ListCrudRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
-    User save(User user);
-    User findById(int userId);
-    void deleteById(int userId);
+import java.util.Optional;
+
+public interface UserRepository extends ListCrudRepository<User, Integer> {
+    Optional<User> findByUsernameAndPassword(String username, String password);
 }

@@ -1,10 +1,16 @@
 package com.judisarodev.sofologos.repository;
 
 import com.judisarodev.sofologos.model.Post;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.ListCrudRepository;
 
-public interface PostRepository extends JpaRepository<Post, Integer> {
+import java.util.List;
+import java.util.Optional;
+
+public interface PostRepository extends ListCrudRepository<Post, Integer> {
+    //missing get by category.
+    List<Post> findAll();
+    Optional<Post> findById(Integer postId);
     Post save(Post user);
-    Post findById(int postId);
-    void deleteById(int postId);
+    void deleteById(Integer postId);
 }

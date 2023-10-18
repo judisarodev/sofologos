@@ -19,8 +19,9 @@ public class Post {
     private Integer likes;
     @Column(nullable = false)
     private Integer views;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", updatable = false, insertable = false)
     private User user;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", updatable = false, insertable = false)

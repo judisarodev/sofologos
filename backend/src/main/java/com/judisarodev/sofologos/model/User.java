@@ -17,16 +17,6 @@ public class User {
     private String username;
     @Column(length = 20, nullable = false)
     private String password;
-    @OneToMany(mappedBy = "user")
-    private ArrayList<Post> posts;
-
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
-    }
 
     public Integer getUserId() {
         return userId;

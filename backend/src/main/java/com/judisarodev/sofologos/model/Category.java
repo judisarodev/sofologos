@@ -3,6 +3,7 @@ package com.judisarodev.sofologos.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -14,13 +15,13 @@ public class Category {
     @Column(length = 30, nullable = false)
     private String name;
     @OneToMany(mappedBy = "category")
-    private ArrayList<Post> posts;
+    private List<Post> posts;
 
-    public ArrayList<Post> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(ArrayList<Post> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
 
