@@ -1,7 +1,6 @@
 package com.judisarodev.sofologos.repository;
 
 import com.judisarodev.sofologos.model.Post;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;

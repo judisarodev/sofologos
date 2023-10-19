@@ -1,37 +1,34 @@
 package com.judisarodev.sofologos.controller;
-
-import com.judisarodev.sofologos.model.Post;
-import com.judisarodev.sofologos.request.PostItem;
-import com.judisarodev.sofologos.service.CategoryService;
+import com.judisarodev.sofologos.dto.PostDto;
 import com.judisarodev.sofologos.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
-@RequestMapping("posts")
+@RequestMapping("/posts")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class PostRestController {
     private final PostService postService;
-    private CategoryService categoryService;
-    public PostRestController(PostService postService, CategoryService categoryService){
+    public PostRestController(PostService postService){
         this.postService = postService;
-        this.categoryService = categoryService;
     }
-    @GetMapping("/get-all-posts")
-    public ArrayList<PostItem> getAllPosts(){
-        return postService.getAllPosts();
+    @GetMapping("/get-all")
+    public ArrayList<PostDto> getAll(){
+        return postService.getAll();
     }
-    @GetMapping("/find-post-by-id/{id}")
-    public Post findById(@PathVariable Integer id){
-        return this.postService.findById(id);
+    @GetMapping("/get-by-id/{id}")
+    public PostDto findById(@PathVariable Integer id){
+        return this.postService.getById(id);
     }
-    @GetMapping("/create-post")
-    public Post save(Post post){
+    // It needs something like:
+    // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": ""}
+    @PostMapping("/create-post")
+    public Boolean save(@RequestBody PostDto post){
         return this.postService.save(post);
     }
-    @GetMapping("delete-post/{id}")
-    public void deleteById(@PathVariable Integer id){
-        this.postService.deleteById(id);
+    @GetMapping("delete-by-id/{id}")
+    public Boolean deleteById(@PathVariable Integer id){
+        return this.postService.deleteById(id);
     }
 }

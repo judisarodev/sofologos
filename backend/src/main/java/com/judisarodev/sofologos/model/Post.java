@@ -19,14 +19,25 @@ public class Post {
     private Integer likes;
     @Column(nullable = false)
     private Integer views;
-
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", updatable = false, insertable = false)
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id", updatable = false, insertable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
+    public Post() {
+
+    }
+    public Post(String title, String summary, String content, Integer likes, Integer views, User user, Category category) {
+        this.title = title;
+        this.summary = summary;
+        this.content = content;
+        this.likes = likes;
+        this.views = views;
+        this.user = user;
+        this.category = category;
+    }
     public Integer getPostId() {
         return postId;
     }

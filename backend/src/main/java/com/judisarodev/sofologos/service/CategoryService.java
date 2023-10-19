@@ -5,11 +5,11 @@ import com.judisarodev.sofologos.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
-    private CategoryRepository categoryRepository;
-
+    private final CategoryRepository categoryRepository;
     public CategoryService(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
     }
@@ -18,6 +18,9 @@ public class CategoryService {
     }
     public Category findById(Integer categoryId){
         return categoryRepository.findById(categoryId).orElse(null);
+    }
+    public Category findByName(String name){
+        return categoryRepository.findByName(name).orElse(null);
     }
 
 }
