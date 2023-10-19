@@ -7,7 +7,7 @@ import { PageContext } from '../../context/PageContext';
 
 
 const PostCard = ({ info }) => {
-    const { id, title, date, summary, views, likes } = info; 
+    const { postId, title, date, summary, views, likes } = info; 
     const [heart, setHeart] = useState(false);
 
     const { setToPost } = useContext(PageContext);
@@ -17,7 +17,7 @@ const PostCard = ({ info }) => {
     }
 
     return(
-        <div onClick={() => setToPost(id) } className='card--container d-flex flex-column gap-1'>
+        <div onClick={() => setToPost(postId) } className='card--container d-flex flex-column gap-1'>
             <div className='d-flex justify-content-between'>
                 <p className='card__date m-0'>{date}</p>
                 <RiShareForwardLine color='#757575' size={15}/>

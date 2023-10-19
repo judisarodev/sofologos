@@ -3,13 +3,34 @@ import { SearchBar } from "../../components/search_bar";
 import { DropDownButton } from "../../components/drop_down_button";
 import { HorizontalList } from "../../components/horizontal_list";
 import { PostCard } from "../../components/post_card";
-import { posts } from "../../data";
 import './index.css';
 import { SingUpForm } from "../../components/sing-up-form";
 
 const HomeView = () => {
 
     const [isSmall, setIsSmall] = useState();
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+
+        fetch('http://localhost:9090/posts/get-all', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if(!response.ok){
+                throw new Error ("No es posible contactarse con el servidor");
+            }else{
+                return response.json();
+            }
+        })
+        .then((data) => {
+            setPosts(data);
+        });
+
+    }, []);
 
     useEffect(() => {
         function handleResize() {
