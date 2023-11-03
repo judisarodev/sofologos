@@ -12,7 +12,7 @@ const ViewContainer = () => {
         <div>
             {page.HOME && <HomeView />}
             {page.ABOUT_US && <AboutUsView />}
-            {page.POST && <PostView />}
+            {page.POST && <PostView postId={2}/>}
         </div>
     );
 }

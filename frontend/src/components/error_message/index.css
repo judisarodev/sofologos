@@ -1,0 +1,14 @@
+.error-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.error-message__text {
+    text-align: center;
+}
+
+.error-message__icon {
+    align-self: center;
+}

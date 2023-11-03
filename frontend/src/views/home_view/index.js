@@ -5,29 +5,31 @@ import { HorizontalList } from "../../components/horizontal_list";
 import { PostCard } from "../../components/post_card";
 import './index.css';
 import { SingUpForm } from "../../components/sing-up-form";
+import { ErrorMessage } from "../../components/error_message";
 
 const HomeView = () => {
 
     const [isSmall, setIsSmall] = useState();
     const [posts, setPosts] = useState([]);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-
-        fetch('http://localhost:9090/posts/get-all', {
+        fetch(
+            'http://localhost:9090/posts/get-all', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(response => {
-            if(!response.ok){
-                throw new Error ("No es posible contactarse con el servidor");
-            }else{
-                return response.json();
-            }
+            return response.json();
         })
         .then((data) => {
             setPosts(data);
+        })
+        .catch(error => {
+            setError(true);
         });
 
     }, []);
@@ -59,15 +61,17 @@ const HomeView = () => {
                     {isSmall && <DropDownButton/>}
                 </div>
             </div>
-        
+
+            {error ? <ErrorMessage /> : 
             <div className="row m-2">
                 {posts.map((info) => 
                     <div className="col-lg-6 col-md-12 d-flex justify-content-center">
                         <PostCard info={info} />
                     </div>
                 )}
+                <p className="view-more">{'Ver más'}</p>
             </div>
-            <p className="view-more">{'Ver más'}</p>
+            }
 
             <SingUpForm /> 
         </div>
