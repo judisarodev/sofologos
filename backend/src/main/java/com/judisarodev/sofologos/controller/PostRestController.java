@@ -26,11 +26,11 @@ public class PostRestController {
     // It needs something like:
     // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": "", "date":'1/1/1001'}
     @PostMapping("/create-post")
-    public Boolean save(@RequestBody PostDto post){
+    public boolean save(@RequestBody PostDto post){
         return this.postService.save(post);
     }
     @GetMapping("delete-by-id/{id}")
-    public Boolean deleteById(@PathVariable Integer id){
+    public boolean deleteById(@PathVariable Integer id){
         return this.postService.deleteById(id);
     }
 }

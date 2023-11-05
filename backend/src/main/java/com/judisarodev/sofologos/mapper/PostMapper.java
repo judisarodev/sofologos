@@ -4,9 +4,7 @@ import com.judisarodev.sofologos.dto.DateDto;
 import com.judisarodev.sofologos.dto.PostDto;
 import com.judisarodev.sofologos.model.Post;
 import org.mapstruct.*;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

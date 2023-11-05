@@ -23,42 +23,29 @@ public class PostService {
     public ArrayList<PostDto> getAll() {
         ArrayList<PostDto> postsDto = new ArrayList<>();
         for(Post p: postRepository.findAll()){
-            DateDto date = new DateDto(
-                    Integer.toString(p.getDate().get(Calendar.DATE)),
-                    Integer.toString(p.getDate().get(Calendar.MONTH)),
-                    Integer.toString(p.getDate().get(Calendar.YEAR)));
             postsDto.add(this.postMapper.toPostDto(p));
         }
         return postsDto;
     }
     public PostDto getById(Integer postId){
         Post post = this.postRepository.findById(postId).orElse(null);
-        DateDto date = new DateDto(
-                Integer.toString(post.getDate().get(Calendar.DATE)),
-                Integer.toString(post.getDate().get(Calendar.MONTH)),
-                Integer.toString(post.getDate().get(Calendar.YEAR)));
         return this.postMapper.toPostDto(post);
     }
-    public Boolean save(PostDto givenPost) {
-        Calendar date = new GregorianCalendar(
-                Integer.parseInt(givenPost.getDate().getYear()),
-                Integer.parseInt(givenPost.getDate().getMonth()),
-                Integer.parseInt(givenPost.getDate().getDate()));
-
+    public boolean save(PostDto givenPost) {
         Post post = postRepository.save(this.postMapper.toPost(givenPost));
         if(postRepository.findById(post.getPostId()).orElse(null) == null){
-            return Boolean.FALSE;
+            return false;
         }else{
-            return Boolean.TRUE;
+            return true;
         }
     }
-    public Boolean deleteById(Integer postId){
+    public boolean deleteById(Integer postId){
         Post post = this.postRepository.findById(postId).orElse(null);
         if(post == null){
-            return Boolean.FALSE;
+            return false;
         }else {
             postRepository.deleteById(postId);
-            return Boolean.TRUE;
+            return true;
         }
     }
 }
