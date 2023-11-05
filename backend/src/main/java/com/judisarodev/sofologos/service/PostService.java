@@ -20,10 +20,16 @@ public class PostService {
         this.postRepository = postRepository;
         this.postMapper = postMapper;
     }
-    public ArrayList<PostDto> getAll() {
+    public ArrayList<PostDto> getAll(int rows) {
         ArrayList<PostDto> postsDto = new ArrayList<>();
-        for(Post p: postRepository.findAll()){
-            postsDto.add(this.postMapper.toPostDto(p));
+        int counter = 0;
+        for(Post p: postRepository.findAll()) {
+            if (counter < rows) {
+                counter++;
+                postsDto.add(this.postMapper.toPostDto(p));
+            }else{
+                break;
+            }
         }
         return postsDto;
     }

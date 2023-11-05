@@ -14,10 +14,11 @@ const HomeView = () => {
     const [myPosts, setMyPosts] = useState(allPosts);
     const [error, setError] = useState(true);
     const [errorText, setErrorText] = useState("Cargando");
+    const [rows, setRows] = useState(6);
 
     useEffect(() => {
         fetch(
-            'http://localhost:9090/posts/get-all', {
+            'http://localhost:9090/posts/get-all/' + rows , {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +39,7 @@ const HomeView = () => {
             setErrorText("Intentalo más tarde");
         });
 
-    }, []);
+    }, [rows]);
 
     useEffect(() => {
         function handleResize() {
@@ -58,6 +59,10 @@ const HomeView = () => {
 
     function removeAccents(str) {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    const addRows = () => {
+        setRows(rows+4);
     }
 
     const filterByTitle = (e) => {
@@ -103,7 +108,7 @@ const HomeView = () => {
                         <PostCard info={info} />
                     </div> 
                 )}
-                <p className="view-more">{'Ver más'}</p>
+                <p className="view-more" onClick={addRows}>{'Ver más'}</p>
             </div>
             }
 
