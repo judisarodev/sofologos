@@ -1,13 +1,12 @@
 import React from "react";
-import { BiErrorCircle } from 'react-icons/bi';
+import { MdOutlineDownloading } from 'react-icons/md';
 import './index.css';
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ text }) => {
     return(
         <div className="error-message">
-            <p className="error-message__text">En este momento no es posible visualizar la información</p>
-            <p className="error-message__text">Por favor inténtalo más tarde</p>
-            <BiErrorCircle size={100} color="gray" className="error-message__icon"/>
+            <p className="error-message__text">{text}</p>
+            <MdOutlineDownloading size={100} color="gray" className="error-message__icon"/>
         </div>
     ); 
 }

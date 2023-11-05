@@ -13,6 +13,7 @@ const HomeView = () => {
     const [allPosts, setAllPosts] = useState([]);
     const [myPosts, setMyPosts] = useState(allPosts);
     const [error, setError] = useState(true);
+    const [errorText, setErrorText] = useState("Cargando");
 
     useEffect(() => {
         fetch(
@@ -30,10 +31,11 @@ const HomeView = () => {
         })
         .then((data) => {
             setAllPosts(data);
-            setMyPosts(allPosts);
+            setMyPosts(data);
         })
         .catch(error => {
             setError(true);
+            setErrorText("Intentalo más tarde");
         });
 
     }, []);
@@ -58,9 +60,8 @@ const HomeView = () => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
-    const filterCategories = (e) => {
+    const filterByTitle = (e) => {
         const text = e.target.value; 
-        console.log(text);
         if(text){
             setMyPosts(allPosts.filter(p => 
                 removeAccents(p.title.toLowerCase()).includes(removeAccents(text.toLowerCase()))
@@ -70,24 +71,37 @@ const HomeView = () => {
         }
     }
 
+    const filterByCategory = (e) => {
+        const category = e.target.textContent; 
+        setMyPosts(allPosts.filter(p => 
+            p.category === category
+        ));
+    }
+
     return(
         <div className="container">
             <div className="row container--serching-bar">
                 <div className="col-lg-8 col-md-12">
-                    {!isSmall && <HorizontalList /> }
+                    {!isSmall && <HorizontalList filterByCategory={filterByCategory}/> }
                 </div>
                 <div className="col-lg-4 col-md-12">
-                    <SearchBar filterCategories={filterCategories}/>
+                    <SearchBar filterByTitle={filterByTitle}/>
                     {isSmall && <DropDownButton/>}
                 </div>
             </div>
 
-            {error ? <ErrorMessage /> : 
+            {error ? <ErrorMessage text={errorText} /> : 
             <div className="row m-2">
-                {myPosts.map((info) => 
+                {myPosts.length > 0 && myPosts.map((info) => 
                     <div className="col-lg-6 col-md-12 d-flex justify-content-center gap-2">
                         <PostCard info={info} />
-                    </div>
+                    </div> 
+                )}
+
+                {!myPosts.length && allPosts.map((info) => 
+                    <div className="col-lg-6 col-md-12 d-flex justify-content-center gap-2">
+                        <PostCard info={info} />
+                    </div> 
                 )}
                 <p className="view-more">{'Ver más'}</p>
             </div>
