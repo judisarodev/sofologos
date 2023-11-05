@@ -42,7 +42,7 @@ const PostView = ({postId}) => {
         <div className="row justify-content-center m-3">
             <div className="col-6 content">
                 
-                <p>{post.date.day}/{post.date.month}/{post.date.year}</p>
+                <p>{post.date.date}/{post.date.month}/{post.date.year}</p>
                 <p>{post.title}</p>
                 <p>{post.summary}</p>
                 <p>{post.content}</p>

@@ -11,8 +11,7 @@ const HomeView = () => {
 
     const [isSmall, setIsSmall] = useState();
     const [posts, setPosts] = useState([]);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(true);
 
     useEffect(() => {
         fetch(
@@ -23,7 +22,10 @@ const HomeView = () => {
             }
         })
         .then(response => {
-            return response.json();
+            if(response.ok){
+                setError(false);
+                return response.json();
+            }
         })
         .then((data) => {
             setPosts(data);
