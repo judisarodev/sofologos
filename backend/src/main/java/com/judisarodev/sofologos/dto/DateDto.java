@@ -1,41 +1,37 @@
 package com.judisarodev.sofologos.dto;
 
-public class Date {
-    private Integer day;
-    private Integer month;
-    private Integer year;
-    public Date(Integer day, Integer month, Integer year|){
-        this.day = day;
+public class DateDto {
+    private String date;
+    private String month;
+    private String year;
+
+    public DateDto(String date, String month, String year) {
+        this.date = date;
         this.month = month;
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return day+"/"+month+"/"+year;
+    public String getDate() {
+        return date;
     }
 
-    public Integer getDay() {
-        return day;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
-
-    public Integer getMonth() {
+    public String getMonth() {
         return month;
     }
 
-    public void setMonth(Integer month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
-    public Integer getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(String year) {
         this.year = year;
     }
 }

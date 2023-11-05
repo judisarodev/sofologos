@@ -22,7 +22,7 @@ public class PostRestController {
         return this.postService.getById(id);
     }
     // It needs something like:
-    // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": ""}
+    // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": "", "date":'1/1/1001'}
     @PostMapping("/create-post")
     public Boolean save(@RequestBody PostDto post){
         return this.postService.save(post);

@@ -2,6 +2,10 @@ package com.judisarodev.sofologos.model;
 
 import jakarta.persistence.*;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -19,6 +23,8 @@ public class Post {
     private Integer likes;
     @Column(nullable = false)
     private Integer views;
+    @Column(nullable = false, columnDefinition = "DATE")
+    private Calendar date;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -29,7 +35,7 @@ public class Post {
     public Post() {
 
     }
-    public Post(String title, String summary, String content, Integer likes, Integer views, User user, Category category) {
+    public Post(String title, String summary, String content, Integer likes, Integer views, User user, Category category, Calendar date) {
         this.title = title;
         this.summary = summary;
         this.content = content;
@@ -37,6 +43,7 @@ public class Post {
         this.views = views;
         this.user = user;
         this.category = category;
+        this.date = date;
     }
     public Integer getPostId() {
         return postId;
@@ -100,5 +107,13 @@ public class Post {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 }
