@@ -7,7 +7,6 @@ import { PageContext } from '../../context/PageContext';
 
 
 const PostCard = ({ info }) => {
-    console.log(info);
     const { postId, title, date, summary, views, likes } = info;
 
     let summaryText = summary; 

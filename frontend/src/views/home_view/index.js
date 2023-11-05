@@ -10,7 +10,8 @@ import { ErrorMessage } from "../../components/error_message";
 const HomeView = () => {
 
     const [isSmall, setIsSmall] = useState();
-    const [posts, setPosts] = useState([]);
+    const [allPosts, setAllPosts] = useState([]);
+    const [myPosts, setMyPosts] = useState(allPosts);
     const [error, setError] = useState(true);
 
     useEffect(() => {
@@ -28,7 +29,8 @@ const HomeView = () => {
             }
         })
         .then((data) => {
-            setPosts(data);
+            setAllPosts(data);
+            setMyPosts(allPosts);
         })
         .catch(error => {
             setError(true);
@@ -52,6 +54,22 @@ const HomeView = () => {
           };
     }, []);
 
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    const filterCategories = (e) => {
+        const text = e.target.value; 
+        console.log(text);
+        if(text){
+            setMyPosts(allPosts.filter(p => 
+                removeAccents(p.title.toLowerCase()).includes(removeAccents(text.toLowerCase()))
+            ));
+        }else{
+            setMyPosts(allPosts);
+        }
+    }
+
     return(
         <div className="container">
             <div className="row container--serching-bar">
@@ -59,14 +77,14 @@ const HomeView = () => {
                     {!isSmall && <HorizontalList /> }
                 </div>
                 <div className="col-lg-4 col-md-12">
-                    <SearchBar/>
+                    <SearchBar filterCategories={filterCategories}/>
                     {isSmall && <DropDownButton/>}
                 </div>
             </div>
 
             {error ? <ErrorMessage /> : 
             <div className="row m-2">
-                {posts.map((info) => 
+                {myPosts.map((info) => 
                     <div className="col-lg-6 col-md-12 d-flex justify-content-center gap-2">
                         <PostCard info={info} />
                     </div>
