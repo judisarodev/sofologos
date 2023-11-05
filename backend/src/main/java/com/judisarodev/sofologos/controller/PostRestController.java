@@ -1,6 +1,8 @@
 package com.judisarodev.sofologos.controller;
 import com.judisarodev.sofologos.dto.PostDto;
 import com.judisarodev.sofologos.service.PostService;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,12 +16,12 @@ public class PostRestController {
         this.postService = postService;
     }
     @GetMapping("/get-all")
-    public ArrayList<PostDto> getAll(){
-        return postService.getAll();
+    public ResponseEntity<ArrayList<PostDto>> getAll(){
+        return ResponseEntity.ok(this.postService.getAll());
     }
     @GetMapping("/get-by-id/{id}")
-    public PostDto findById(@PathVariable Integer id){
-        return this.postService.getById(id);
+    public ResponseEntity<PostDto> findById(@PathVariable Integer id){
+        return ResponseEntity.ok(this.postService.getById(id));
     }
     // It needs something like:
     // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": "", "date":'1/1/1001'}

@@ -1,10 +1,6 @@
 package com.judisarodev.sofologos.model;
-
 import jakarta.persistence.*;
-
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 @Entity
 @Table(name = "posts")
