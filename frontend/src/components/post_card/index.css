@@ -1,10 +1,14 @@
 .card--container{
     width: 415px;
-    border-bottom: 2px solid #3F51B5;
-    padding-bottom: 5px;
     margin-bottom: 30px;
 }
-
+.card__content{
+    padding: 7px;
+    height: 120px;
+}
+.card__content:hover{
+    cursor: pointer;
+}
 .card__date{
     color: #757575;
 }
@@ -24,4 +28,17 @@
 }
 .card__clickable:hover{
     cursor:pointer; 
+}
+.card__divider {
+    height: 1px;
+    margin-top: 7px;
+    background-color: #3F51B5;
+}
+.card_reactions{
+    padding-right: 7px;
+    padding-left: 7px;
+}
+.card__header{
+    padding: 7px;
+    background-color: #FBFBFB;
 }

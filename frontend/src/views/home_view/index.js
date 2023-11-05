@@ -67,7 +67,7 @@ const HomeView = () => {
             {error ? <ErrorMessage /> : 
             <div className="row m-2">
                 {posts.map((info) => 
-                    <div className="col-lg-6 col-md-12 d-flex justify-content-center">
+                    <div className="col-lg-6 col-md-12 d-flex justify-content-center gap-2">
                         <PostCard info={info} />
                     </div>
                 )}
