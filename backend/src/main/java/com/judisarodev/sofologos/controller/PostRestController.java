@@ -19,6 +19,10 @@ public class PostRestController {
     public ResponseEntity<ArrayList<PostDto>> getAll(@PathVariable int rows){
         return ResponseEntity.ok(this.postService.getAll(rows));
     }
+    @GetMapping("/get-number-of-posts/")
+    public int getNumberOfPosts(){
+        return postService.getNumberOfPosts();
+    }
     @GetMapping("/get-by-id/{id}")
     public ResponseEntity<PostDto> findById(@PathVariable Integer id){
         return ResponseEntity.ok(this.postService.getById(id));

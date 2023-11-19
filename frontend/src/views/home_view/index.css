@@ -4,9 +4,11 @@
 }
 .view-more{
     text-align: center;
-    color: #303F9F;
+    display: flex;
+    justify-content: center;
 }
-.view-more:hover{
+
+.view-more>p:hover{
     cursor:pointer;
     text-decoration: underline;
 }

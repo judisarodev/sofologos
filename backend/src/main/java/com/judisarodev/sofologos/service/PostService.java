@@ -20,6 +20,9 @@ public class PostService {
         this.postRepository = postRepository;
         this.postMapper = postMapper;
     }
+    public int getNumberOfPosts(){
+        return postRepository.findAll().size();
+    }
     public ArrayList<PostDto> getAll(int rows) {
         ArrayList<PostDto> postsDto = new ArrayList<>();
         int counter = 0;

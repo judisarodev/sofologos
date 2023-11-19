@@ -13,8 +13,32 @@ const HomeView = () => {
     const [allPosts, setAllPosts] = useState([]);
     const [myPosts, setMyPosts] = useState(allPosts);
     const [error, setError] = useState(true);
-    const [errorText, setErrorText] = useState("Cargando");
+    const [errorText, setErrorText] = useState("Cargando...");
     const [rows, setRows] = useState(6);
+    const [numberPosts, setNumberPosts] = useState(0);
+
+    const viewMoreStyle = {
+        'color': rows < numberPosts ? '#303F9F' : 'gray',
+        'pointer-events': rows < numberPosts ? 'auto' : 'none'
+    };
+
+    useEffect(() => {
+        fetch(
+            'http://localhost:9090/posts/get-number-of-posts/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+        })
+        .then((amount) => {
+            setNumberPosts(amount);
+        });
+    }, []);
 
     useEffect(() => {
         fetch(
@@ -38,7 +62,6 @@ const HomeView = () => {
             setError(true);
             setErrorText("Intentalo más tarde");
         });
-
     }, [rows]);
 
     useEffect(() => {
@@ -63,6 +86,7 @@ const HomeView = () => {
 
     const addRows = () => {
         setRows(rows+4);
+        console.log("ROWS", rows, "AMOUNT", numberPosts);
     }
 
     const filterByTitle = (e) => {
@@ -108,7 +132,9 @@ const HomeView = () => {
                         <PostCard info={info} />
                     </div> 
                 )}
-                <p className="view-more" onClick={addRows}>{'Ver más'}</p>
+                <div className="view-more">
+                    <p style={viewMoreStyle} onClick={addRows}>{'Ver más'}</p>
+                </div>
             </div>
             }
 
