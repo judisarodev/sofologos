@@ -1,37 +1,30 @@
 package com.judisarodev.sofologos.dto;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 public class PostDto {
     private Integer postId;
     private String title;
     private String category;
     private String summary;
     private String content;
-    private Integer likes;
     private Integer views;
     private String username;
     private DateDto date;
     public PostDto(){}
-    public PostDto(String title, String category, String summary, String content, Integer likes, Integer views, String username, DateDto date) {
+    public PostDto(String title, String category, String summary, String content, Integer views, String username, DateDto date) {
         this.title = title;
         this.category = category;
         this.summary = summary;
         this.content = content;
-        this.likes = likes;
         this.views = views;
         this.username = username;
         this.date = date;
     }
-    public PostDto(Integer postId, String title, String category, String summary, String content, Integer likes, Integer views, String username, DateDto date) {
+    public PostDto(Integer postId, String title, String category, String summary, String content, Integer views, String username, DateDto date) {
         this.postId = postId;
         this.title = title;
         this.category = category;
         this.summary = summary;
         this.content = content;
-        this.likes = likes;
         this.views = views;
         this.username = username;
         this.date = date;
@@ -67,14 +60,6 @@ public class PostDto {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
     }
 
     public Integer getViews() {

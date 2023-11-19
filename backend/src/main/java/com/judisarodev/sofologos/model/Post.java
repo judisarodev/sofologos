@@ -16,8 +16,6 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
     @Column(nullable = false)
-    private Integer likes;
-    @Column(nullable = false)
     private Integer views;
     @Column(nullable = false, columnDefinition = "DATE")
     private Calendar date;
@@ -31,11 +29,10 @@ public class Post {
     public Post() {
 
     }
-    public Post(String title, String summary, String content, Integer likes, Integer views, User user, Category category, Calendar date) {
+    public Post(String title, String summary, String content, Integer views, User user, Category category, Calendar date) {
         this.title = title;
         this.summary = summary;
         this.content = content;
-        this.likes = likes;
         this.views = views;
         this.user = user;
         this.category = category;
@@ -71,14 +68,6 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
     }
 
     public Integer getViews() {

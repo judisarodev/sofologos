@@ -42,3 +42,7 @@
     padding: 7px;
     background-color: #FBFBFB;
 }
+.reactions__like{
+    display: inline;
+    cursor: pointer;
+}

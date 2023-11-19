@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchBar } from "../../components/search_bar";
 import { DropDownButton } from "../../components/drop_down_button";
 import { HorizontalList } from "../../components/horizontal_list";
 import { PostCard } from "../../components/post_card";
-import './index.css';
 import { SingUpForm } from "../../components/sing-up-form";
 import { ErrorMessage } from "../../components/error_message";
+import './index.css';
 
 const HomeView = () => {
-
     const [isSmall, setIsSmall] = useState();
     const [allPosts, setAllPosts] = useState([]);
     const [myPosts, setMyPosts] = useState(allPosts);
@@ -16,7 +15,6 @@ const HomeView = () => {
     const [errorText, setErrorText] = useState("Cargando...");
     const [rows, setRows] = useState(6);
     const [numberPosts, setNumberPosts] = useState(0);
-
     const viewMoreStyle = {
         'color': rows < numberPosts ? '#303F9F' : 'gray',
         'pointer-events': rows < numberPosts ? 'auto' : 'none'
@@ -37,6 +35,10 @@ const HomeView = () => {
         })
         .then((amount) => {
             setNumberPosts(amount);
+        })
+        .catch(error => {
+            setError(true);
+            setErrorText("Intentalo más tarde");
         });
     }, []);
 
