@@ -33,8 +33,14 @@ public class PostRestController {
     public boolean save(@RequestBody PostDto post){
         return this.postService.save(post);
     }
-    @GetMapping("delete-by-id/{id}")
+    @DeleteMapping("delete-by-id/{id}")
     public boolean deleteById(@PathVariable Integer id){
         return this.postService.deleteById(id);
     }
+    @PutMapping("add-view/{postId}")
+    public boolean addView(@PathVariable Integer postId){
+        this.postService.addView(postId);
+        return true;
+    }
+
 }

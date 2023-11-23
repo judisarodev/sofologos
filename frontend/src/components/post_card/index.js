@@ -19,12 +19,39 @@ const PostCard = ({ info }) => {
 
     const { setToPost } = useContext(PageContext);
 
+    const getPostPage = () => {
+        console.log("views", views);
+        fetch(
+            'http://localhost:9090/posts/add-view/' + postId,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        .then(response => {
+            if(response.ok){
+                return response.json();
+            }
+        })
+        .then((bool) => {
+            console.log("bool", bool);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+        console.log("views", views);
+        setToPost(postId);
+    }
+
     return(
         <div className='card--container'>
             <div className='card__header d-flex justify-content-end'>
                     <p className='card__date m-0'>{date.date} / {date.month} / {date.year}</p>
                 </div>
-            <div className='card__content d-flex flex-column justify-content-around' onClick={() => setToPost(postId)}>
+            <div className='card__content d-flex flex-column justify-content-around' onClick={getPostPage}>
                 <p className='card__title m-0'>{titleText}</p>
                 <p className='card__summary m-0'>{summaryText}</p>
             </div>  

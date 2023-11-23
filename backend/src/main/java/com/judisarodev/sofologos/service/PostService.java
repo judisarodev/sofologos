@@ -7,6 +7,7 @@ import com.judisarodev.sofologos.model.Post;
 import com.judisarodev.sofologos.model.User;
 import com.judisarodev.sofologos.repository.PostRepository;
 import com.judisarodev.sofologos.dto.PostDto;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,5 +57,10 @@ public class PostService {
             postRepository.deleteById(postId);
             return true;
         }
+    }
+    @Transactional
+    public void addView(Integer postId){
+        this.postRepository.addView(postId);
+        System.out.println("Se ha sumado una vista al post " + postId);
     }
 }

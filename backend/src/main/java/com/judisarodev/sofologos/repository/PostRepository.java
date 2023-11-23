@@ -1,6 +1,8 @@
 package com.judisarodev.sofologos.repository;
 
 import com.judisarodev.sofologos.model.Post;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
@@ -12,4 +14,7 @@ public interface PostRepository extends ListCrudRepository<Post, Integer> {
     Optional<Post> findById(Integer postId);
     Post save(Post user);
     void deleteById(Integer postId);
+    @Modifying
+    @Query("UPDATE Post SET views = views + 1 WHERE postId = :postId")
+    void addView(Integer postId);
 }
