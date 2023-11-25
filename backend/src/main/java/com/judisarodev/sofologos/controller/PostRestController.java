@@ -1,7 +1,6 @@
 package com.judisarodev.sofologos.controller;
 import com.judisarodev.sofologos.dto.PostDto;
 import com.judisarodev.sofologos.service.PostService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,7 @@ public class PostRestController {
     }
     // It needs something like:
     // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": "", "date":'1/1/1001'}
-    @PostMapping("/create-post")
+    @PutMapping("/create-post")
     public boolean save(@RequestBody PostDto post){
         return this.postService.save(post);
     }

@@ -1,17 +1,11 @@
 package com.judisarodev.sofologos.service;
-
-import com.judisarodev.sofologos.dto.DateDto;
 import com.judisarodev.sofologos.mapper.PostMapper;
-import com.judisarodev.sofologos.model.Category;
 import com.judisarodev.sofologos.model.Post;
-import com.judisarodev.sofologos.model.User;
 import com.judisarodev.sofologos.repository.PostRepository;
 import com.judisarodev.sofologos.dto.PostDto;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 @Service
 public class PostService {

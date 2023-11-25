@@ -10,7 +10,7 @@ const Footer = () => {
             </p>
             <p>
                 <span className="footer-text">No te pierdas mi </span>
-                <a className="footer-link" href="https://github.com/judisarodev/basic-calculator.git">Portafolio</a>
+                <a className="footer-link" href="https://github.com/judisarodev/sofologos">Portafolio</a>
             </p>
         </div>
     );

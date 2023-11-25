@@ -10,7 +10,7 @@ public interface GlobalCorsConfig extends WebMvcConfigurer {
     default void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("http://localhost:3000/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("/")
+                .allowedHeaders("*")
                 .allowCredentials(true);
     }
 }
