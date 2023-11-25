@@ -15,10 +15,28 @@ const HomeView = () => {
     const [errorText, setErrorText] = useState("Cargando...");
     const [rows, setRows] = useState(6);
     const [numberPosts, setNumberPosts] = useState(0);
+    const [categories, setCategories] = useState([]);
     const viewMoreStyle = {
         'color': rows < numberPosts ? '#303F9F' : 'gray',
         'pointer-events': rows < numberPosts ? 'auto' : 'none'
     };
+
+    useEffect(()=>{
+        fetch('http://localhost:9090/category/get-all', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((response) => {
+            if(response.ok){
+                return response.json();
+            }
+        })
+        .then(data => {
+            setCategories(data);
+        });
+    }, []);
 
     useEffect(() => {
         fetch(
@@ -113,11 +131,11 @@ const HomeView = () => {
         <div className="container">
             <div className="row container--serching-bar">
                 <div className="col-lg-8 col-md-12">
-                    {!isSmall && <HorizontalList filterByCategory={filterByCategory}/> }
+                    {!isSmall && <HorizontalList filterByCategory={filterByCategory} categories={categories}/> }
                 </div>
                 <div className="col-lg-4 col-md-12">
                     <SearchBar filterByTitle={filterByTitle}/>
-                    {isSmall && <DropDownButton/>}
+                    {isSmall && <DropDownButton filterByCategory={filterByCategory} categories={categories}/>}
                 </div>
             </div>
 
