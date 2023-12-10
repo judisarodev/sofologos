@@ -35,7 +35,7 @@ public interface PostMapper {
     })
     PostDto toPostDto(Post post);
     @Mappings({
-            @Mapping(source = "username", target = "user.username"),
+            @Mapping(source = "username", target = "user.userId"),
             @Mapping(source = "category", target = "category.categoryId"),
             @Mapping(source = "postDto.date", target = "date", qualifiedByName = "mapDateDtoToCalendar")
     })

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/posts")
-@CrossOrigin(origins = "http://localhost:3000/")
 public class PostRestController {
     private final PostService postService;
     public PostRestController(PostService postService){
@@ -26,8 +25,21 @@ public class PostRestController {
     public ResponseEntity<PostDto> findById(@PathVariable Integer id){
         return ResponseEntity.ok(this.postService.getById(id));
     }
-    // It needs something like:
-    // {"title": "", "category": "", "summary": "", "content": "", "likes": 0, "views": 0, "username": "", "date":'1/1/1001'}
+    /*
+    * {
+    "title": "t",
+    "category": "1",
+    "summary": "s",
+    "content": "c",
+    "views": 0,
+    "username": "1",
+    "date":{
+        "date":"01",
+        "month": "12",
+        "year": "2023"
+    }
+}
+    * */
     @PutMapping("/create-post")
     public boolean save(@RequestBody PostDto post){
         return this.postService.save(post);
@@ -40,6 +52,11 @@ public class PostRestController {
     public boolean addView(@PathVariable Integer postId){
         this.postService.addView(postId);
         return true;
+    }
+
+    @PutMapping("/put-something")
+    public String putSomething(){
+        return "We´ve put something here";
     }
 
 }

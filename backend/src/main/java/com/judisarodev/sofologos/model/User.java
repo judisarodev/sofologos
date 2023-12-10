@@ -11,8 +11,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "user_type_id")
-    private Integer userTypeId;
+    @ManyToOne
+    @JoinColumn(name = "user_type_id")
+    private UserType role;
     @Column(length = 20, nullable = false)
     private String username;
     @Column(length = 20, nullable = false)
@@ -26,12 +27,12 @@ public class User {
         this.userId = userId;
     }
 
-    public Integer getUserTypeId() {
-        return userTypeId;
+    public UserType getRole() {
+        return role;
     }
 
-    public void setUserTypeId(Integer userTypeId) {
-        this.userTypeId = userTypeId;
+    public void setRole(UserType role) {
+        this.role = role;
     }
 
     public String getUsername() {

@@ -35,6 +35,10 @@ const HomeView = () => {
         })
         .then(data => {
             setCategories(data);
+        })
+        .catch((e) => {
+            setError(true);
+            setErrorText("Intentalo más tarde");
         });
     }, []);
 
