@@ -3,6 +3,15 @@
     height: 50px;
     margin-bottom: 10px;
 }
+.navbar > div {
+    padding-left: 80px;
+}
+.navbar__item{
+    color: white;
+}
 .navbar__item:hover{
    cursor: pointer; 
+}
+a:link, a:visited, a:active {
+    text-decoration: none;
 }

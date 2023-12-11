@@ -4,11 +4,14 @@ import './index.css';
 const BrandingBar = () => {
 
     return(
-        <div className='braning-bar'>
-            <div className='container d-flex flex-column p-3'>
-            <p className='branding-bar__title m-0'>SOFOLOGOS</p>
-            <p className='branding-bar__subtitle m-0'>Blog de filosofía y literatura</p>
-        </div>
+        <div className='braning-bar d-flex justify-content-between'>
+            <div className='d-flex flex-column'>
+                <p className='branding-bar__title m-0'>SOFOLOGOS</p>
+                <p className='branding-bar__subtitle m-0'>Blog de filosofía y literatura</p>
+            </div>
+            <div>
+                <button className='branding-bar__login btn btn-primary'>Iniciar sesión</button>
+            </div>
         </div>
     );
 }

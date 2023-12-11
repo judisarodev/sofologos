@@ -1,0 +1,17 @@
+ .sing-up-form__label{
+     color: #757575;
+     font-size: 12px;
+     margin-top: 10px;
+ }
+ .button--sumbit{
+     margin-top: 15px;
+ }
+ .form-container{
+    width: 500px;
+    margin: 80px;
+ }
+ .sing-up-form__title{
+    color: black; 
+    font-weight: 600;
+    font-size: 20px;
+}

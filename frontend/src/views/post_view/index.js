@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ViewContainer } from "../../components/view_container";
 
 const PostView = ({postId}) => {
 
@@ -39,15 +40,17 @@ const PostView = ({postId}) => {
     }, [postId]);
 
     return(
-        <div className="row justify-content-center m-3">
-            <div className="col-6 content">
-                
-                <p>{post.date.date}/{post.date.month}/{post.date.year}</p>
-                <p>{post.title}</p>
-                <p>{post.summary}</p>
-                <p>{post.content}</p>
+        <ViewContainer>
+            <div className="row justify-content-center m-3">
+                <div className="col-6 content">
+                    
+                    <p>{post.date.date}/{post.date.month}/{post.date.year}</p>
+                    <p>{post.title}</p>
+                    <p>{post.summary}</p>
+                    <p>{post.content}</p>
+                </div>
             </div>
-        </div>
+        </ViewContainer>
     );
 }
 

@@ -1,5 +1,6 @@
 .braning-bar{
     background-color: #C5CAE9;
+    padding: 25px 30px 25px 80px;
 }
 
 .branding-bar__title{
@@ -8,4 +9,7 @@
 
 .branding-bar__subtitle{
     font-size: 12px; 
+}
+.branding-bar__login {
+    height: 45px;
 }

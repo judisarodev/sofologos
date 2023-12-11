@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { BsEye } from 'react-icons/bs';
-import { PageContext } from '../../context/PageContext';
 import './index.css';
 
 
@@ -17,10 +16,7 @@ const PostCard = ({ info }) => {
         titleText = titleText.slice(0, 40) + "...";   
     }
 
-    const { setToPost } = useContext(PageContext);
-
     const getPostPage = () => {
-        console.log("views", views);
         fetch(
             'http://localhost:9090/posts/add-view/' + postId,
             {
@@ -35,15 +31,9 @@ const PostCard = ({ info }) => {
                 return response.json();
             }
         })
-        .then((bool) => {
-            console.log("bool", bool);
-        })
         .catch((err) => {
             console.log(err);
         });
-
-        console.log("views", views);
-        setToPost(postId);
     }
 
     return(

@@ -16,7 +16,7 @@ const DropDownButton = ({categories, filterByCategory}) => {
                 {<p className="dropdown__textbutton">{currentCategory}</p>}
             </div>
             <ul className="dropdown-menu dropdown__options" aria-labelledby="dropdownMenuLink">
-                {categories.map(item => <li onClick={setCategory} key={item.id} className="dropdown-item">
+                {categories.map(item => <li onClick={setCategory} key={item.categoryId} className="dropdown-item">
                     {item.name}
                 </li>)}
             </ul>

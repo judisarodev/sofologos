@@ -5,6 +5,7 @@ import { HorizontalList } from "../../components/horizontal_list";
 import { PostCard } from "../../components/post_card";
 import { SingUpForm } from "../../components/sing-up-form";
 import { ErrorMessage } from "../../components/error_message";
+import { ViewContainer } from "../../components/view_container";
 import './index.css';
 
 const HomeView = () => {
@@ -18,7 +19,7 @@ const HomeView = () => {
     const [categories, setCategories] = useState([]);
     const viewMoreStyle = {
         'color': rows < numberPosts ? '#303F9F' : 'gray',
-        'pointer-events': rows < numberPosts ? 'auto' : 'none'
+        'pointerEvents': rows < numberPosts ? 'auto' : 'none'
     };
 
     useEffect(()=>{
@@ -47,7 +48,7 @@ const HomeView = () => {
             'http://localhost:9090/posts/get-number-of-posts/', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'aplication/json'
             }
         })
         .then(response => {
@@ -110,7 +111,6 @@ const HomeView = () => {
 
     const addRows = () => {
         setRows(rows+4);
-        console.log("ROWS", rows, "AMOUNT", numberPosts);
     }
 
     const filterByTitle = (e) => {
@@ -132,7 +132,8 @@ const HomeView = () => {
     }
 
     return(
-        <div className="container">
+        <ViewContainer>
+<div className="container">
             <div className="row container--serching-bar">
                 <div className="col-lg-8 col-md-12">
                     {!isSmall && <HorizontalList filterByCategory={filterByCategory} categories={categories}/> }
@@ -164,6 +165,7 @@ const HomeView = () => {
 
             <SingUpForm /> 
         </div>
+        </ViewContainer>
     );
 }
 
