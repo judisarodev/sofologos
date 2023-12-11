@@ -54,9 +54,5 @@ public class PostRestController {
         return true;
     }
 
-    @PutMapping("/put-something")
-    public String putSomething(){
-        return "We´ve put something here";
-    }
 
 }

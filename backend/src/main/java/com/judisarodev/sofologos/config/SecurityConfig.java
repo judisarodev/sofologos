@@ -24,7 +24,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers("/login/authenticate").permitAll()
-                        .requestMatchers(HttpMethod.GET).hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"posts/add-view/*").permitAll()
+                        .requestMatchers(HttpMethod.GET).permitAll()
                         .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
