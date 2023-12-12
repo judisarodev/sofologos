@@ -1,11 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { BsEye } from 'react-icons/bs';
 import './index.css';
+import { LuPencil } from "react-icons/lu";
+import { AiOutlineDelete } from "react-icons/ai";
+
 
 
 const PostCard = ({ info }) => {
     const { postId, title, date, summary, views } = info;
-
+    
     let summaryText = summary; 
     if(summary.length > 300){
         summaryText = summaryText.slice(0, 200) + "...";   
@@ -55,4 +58,24 @@ const PostCard = ({ info }) => {
     );
 }
 
-export { PostCard };
+
+
+const AdminPostCard = ({ info }) => {
+    const { title } = info;
+
+    return(
+        <div className='card--container--admin d-flex align-items-center justify-content-between'>
+            <div className='admin__icon admin__icon--edit'>
+                <LuPencil size={16} color='white'/>
+            </div>
+            <div className='d-flex flex-column justify-content-end p-3'>
+                <p className='m-0 text-center'>{ title }</p>
+            </div>
+            <div className=' admin__icon admin__icon--delete'>
+                <AiOutlineDelete  size={16} color='white'/>      
+            </div>
+        </div>
+    );
+}
+
+export { PostCard, AdminPostCard };

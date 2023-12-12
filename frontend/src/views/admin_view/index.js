@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ViewContainer } from "../../components/view_container";
 import { JwtContext } from "../../context/JwtProvider";
+import { PostsGallery } from "../../components/posts_gallery";
 
 
 const AdminView = () => {
@@ -8,7 +9,7 @@ const AdminView = () => {
 
     return(
         <ViewContainer>
-            { jwt }
+            <PostsGallery adminPost={true}/>
         </ViewContainer>
     );
 }

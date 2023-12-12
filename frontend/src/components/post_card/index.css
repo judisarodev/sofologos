@@ -2,6 +2,14 @@
     width: 415px;
     margin-bottom: 30px;
 }
+.card--container--admin{
+    width: 600px;
+    padding: 12px;
+    margin-top: 50px;
+    border: 1px #C5CAE9 solid;
+    border-radius: 10px;
+    height: 70px;
+}
 .card__content{
     padding: 7px;
     height: 120px;
@@ -45,4 +53,22 @@
 .reactions__like{
     display: inline;
     cursor: pointer;
+
+}
+.admin__icon:hover{
+    cursor: pointer;
+}
+.admin__icon{
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+}
+
+.admin__icon--edit{
+    background-color: #FFC107;
+}
+
+.admin__icon--delete{
+    background-color:  #FBB6D0;
 }

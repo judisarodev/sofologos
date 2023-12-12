@@ -9,8 +9,10 @@ import { SingIn } from './views/sing_in_view/index';
 import { AdminView } from './views/admin_view/index';
 import { JwtProvider } from "./context/JwtProvider";
 import { PostsCategoriesProvider } from './context/PostsCategoriesProvider';
+import { useState } from 'react';
 
 function App() {
+  const [admin, setAdmin] = useState(false); 
 
   return (
     <PostsCategoriesProvider>
