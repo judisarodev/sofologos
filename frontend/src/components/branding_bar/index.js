@@ -1,5 +1,7 @@
 import React from 'react';
 import './index.css';
+import { Link } from 'react-router-dom';
+import { SingIn } from '../../views/sing_in_view/index';
 
 const BrandingBar = () => {
 
@@ -10,7 +12,11 @@ const BrandingBar = () => {
                 <p className='branding-bar__subtitle m-0'>Blog de filosofía y literatura</p>
             </div>
             <div>
-                <button className='branding-bar__login btn btn-primary'>Iniciar sesión</button>
+                <Link to={'/login'}>
+                    <button className='branding-bar__login btn btn-primary'>
+                        Iniciar sesión
+                    </button>
+                </Link>
             </div>
         </div>
     );

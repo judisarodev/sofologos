@@ -18,16 +18,10 @@ public class PostService {
     public int getNumberOfPosts(){
         return postRepository.findAll().size();
     }
-    public ArrayList<PostDto> getAll(int rows) {
+    public ArrayList<PostDto> getAll() {
         ArrayList<PostDto> postsDto = new ArrayList<>();
-        int counter = 0;
         for(Post p: postRepository.findAll()) {
-            if (counter < rows) {
-                counter++;
-                postsDto.add(this.postMapper.toPostDto(p));
-            }else{
-                break;
-            }
+            postsDto.add(this.postMapper.toPostDto(p));
         }
         return postsDto;
     }

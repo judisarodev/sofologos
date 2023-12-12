@@ -2,11 +2,6 @@
    max-width: 710px; 
    margin: auto;
 }
-.sing-up-form__title{
-    color: #FFC107; 
-    font-weight: 600;
-    font-size: 20px;
-}
 .sing-up-form__label{
     color: #757575;
     font-size: 12px;

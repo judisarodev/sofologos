@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './index.css';
-import { Form, Input } from "../form";
+import { Form, Input, SubmitButton } from "../form";
 
 const SingUpForm = () => {
     const [email, setEmail] = useState("");
@@ -26,6 +26,7 @@ const SingUpForm = () => {
     return(
         <Form textButton={'Enviar'} action={submit} title={'No te pierdas una sola publicación'}>
             <Input label={'Correo electronico'} type={'email'} placeholder={'email@mail.com'} setInfo={setEmail}/>
+            <SubmitButton action={catchEmail} text={'ENVIAR'} />
         </Form>
     );
 }

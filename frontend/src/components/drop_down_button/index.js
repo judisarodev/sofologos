@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import './index.css';
 
-const DropDownButton = ({categories, filterByCategory}) => {
+const DropDownButton = ({categories, getCategory}) => {
 
     const [currentCategory, setCurrentCategory] = useState('Categorías');
 
     const setCategory = (e) => {
         setCurrentCategory(e.target.textContent);
-        filterByCategory(e);
+        getCategory(e);
     }
 
     return(

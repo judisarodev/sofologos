@@ -7,22 +7,25 @@ import { HomeView } from './views/home_view/index';
 import { AboutUsView } from './views/about_us_view/index';
 import { SingIn } from './views/sing_in_view/index';
 import { AdminView } from './views/admin_view/index';
+import { JwtProvider } from "./context/JwtProvider";
+import { PostsCategoriesProvider } from './context/PostsCategoriesProvider';
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <BrandingBar />
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<HomeView/>} />
-        <Route path='/about' element={<AboutUsView />} />
-        <Route path='/login' element={<SingIn />} />
-        <Route path='/admin' element={<AdminView />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  
+    <PostsCategoriesProvider>
+      <BrowserRouter>
+        <BrandingBar />
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<HomeView/>} />
+          <Route path='/about' element={<AboutUsView />} />
+          <Route path='/login' element={<JwtProvider><SingIn /></JwtProvider>} />
+          <Route path='/admin' element={<JwtProvider> <AdminView /></JwtProvider>} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </PostsCategoriesProvider>
   );
 }
 

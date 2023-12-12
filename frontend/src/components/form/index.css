@@ -5,6 +5,7 @@
  }
  .button--sumbit{
      margin-top: 15px;
+     width: 100%;
  }
  .form-container{
     width: 500px;

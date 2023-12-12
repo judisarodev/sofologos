@@ -1,0 +1,7 @@
+.login__go-to-admin{
+    margin-top: 10px;
+    font-size: 12px;
+}
+.login__go-to-admin:hover{
+    text-decoration: underline;
+}

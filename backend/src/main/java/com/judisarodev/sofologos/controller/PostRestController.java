@@ -13,9 +13,9 @@ public class PostRestController {
     public PostRestController(PostService postService){
         this.postService = postService;
     }
-    @GetMapping("/get-all/{rows}")
-    public ResponseEntity<ArrayList<PostDto>> getAll(@PathVariable int rows){
-        return ResponseEntity.ok(this.postService.getAll(rows));
+    @GetMapping("/get-all")
+    public ResponseEntity<ArrayList<PostDto>> getAll(){
+        return ResponseEntity.ok(this.postService.getAll());
     }
     @GetMapping("/get-number-of-posts/")
     public int getNumberOfPosts(){

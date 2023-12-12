@@ -17,8 +17,9 @@ public class LoginRestController {
         this.loginService = loginService;
     }
     @PostMapping("/authenticate")
-    public ResponseEntity<Void> authenticate(@RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, loginService.authenticate(loginRequest)).build();
+    public ResponseEntity<String> authenticate(@RequestBody LoginRequest loginRequest) {
+        String jwt = loginService.authenticate(loginRequest);
+        return ResponseEntity.ok(jwt);
     }
 
 }
