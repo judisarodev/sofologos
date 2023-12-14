@@ -40,9 +40,10 @@ public class PostRestController {
     }
 }
     * */
-    @PutMapping("/create-post")
-    public boolean save(@RequestBody PostDto post){
-        return this.postService.save(post);
+    @PutMapping("/save")
+    public ResponseEntity<Boolean> save(@RequestBody PostDto post){
+        return ResponseEntity.ok(this.postService.save(post));
+
     }
     @DeleteMapping("delete-by-id/{id}")
     public boolean deleteById(@PathVariable Integer id){

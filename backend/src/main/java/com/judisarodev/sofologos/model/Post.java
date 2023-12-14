@@ -19,9 +19,8 @@ public class Post {
     private Integer views;
     @Column(nullable = false, columnDefinition = "DATE")
     private Calendar date;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private String userId = "1";
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
@@ -29,12 +28,21 @@ public class Post {
     public Post() {
 
     }
-    public Post(String title, String summary, String content, Integer views, User user, Category category, Calendar date) {
+    public Post(Integer postId,String title, String summary, String content, Integer views, Category category, Calendar date) {
+        this.postId = postId;
         this.title = title;
         this.summary = summary;
         this.content = content;
         this.views = views;
-        this.user = user;
+        this.category = category;
+        this.date = date;
+    }
+
+    public Post(String title, String summary, String content, Integer views, Category category, Calendar date) {
+        this.title = title;
+        this.summary = summary;
+        this.content = content;
+        this.views = views;
         this.category = category;
         this.date = date;
     }
@@ -78,14 +86,6 @@ public class Post {
         this.views = views;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -100,5 +100,16 @@ public class Post {
 
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public String toString(){
+        return(title + " " + summary + " " + category);
     }
 }

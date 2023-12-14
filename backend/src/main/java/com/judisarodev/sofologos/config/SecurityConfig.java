@@ -21,7 +21,10 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests(configurer ->
+        http
+                .cors(Customizer.withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers("/login/authenticate").permitAll()
                         .requestMatchers(HttpMethod.PUT,"posts/add-view/*").permitAll()
@@ -33,8 +36,6 @@ public class SecurityConfig {
         );
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(this.jwtFilter, UsernamePasswordAuthenticationFilter.class);
-        http.csrf(csrf -> csrf.disable());
-        http.cors(Customizer.withDefaults());
         return http.build();
     }
     @Bean

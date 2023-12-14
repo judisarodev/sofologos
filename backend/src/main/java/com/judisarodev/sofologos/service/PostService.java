@@ -1,19 +1,30 @@
 package com.judisarodev.sofologos.service;
+import com.judisarodev.sofologos.dto.CategoryDto;
+import com.judisarodev.sofologos.dto.DateDto;
+import com.judisarodev.sofologos.mapper.CategoryMapper;
 import com.judisarodev.sofologos.mapper.PostMapper;
+import com.judisarodev.sofologos.model.Category;
 import com.judisarodev.sofologos.model.Post;
 import com.judisarodev.sofologos.repository.PostRepository;
 import com.judisarodev.sofologos.dto.PostDto;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 @Service
 public class PostService {
     private final PostRepository postRepository;
     private final PostMapper postMapper;
-    public PostService(PostRepository postRepository, PostMapper postMapper){
+    private final CategoryService categoryService;
+    private CategoryMapper categoryMapper;
+    public PostService(PostRepository postRepository, PostMapper postMapper, CategoryService categoryService, CategoryMapper categoryMapper){
         this.postRepository = postRepository;
         this.postMapper = postMapper;
+        this.categoryService = categoryService;
+        this.categoryMapper = categoryMapper;
     }
     public int getNumberOfPosts(){
         return postRepository.findAll().size();
@@ -30,12 +41,36 @@ public class PostService {
         return this.postMapper.toPostDto(post);
     }
     public boolean save(PostDto givenPost) {
-        Post post = postRepository.save(this.postMapper.toPost(givenPost));
+        Calendar date = this.postMapper.mapDateDtoToCalendar(givenPost.getDate());
+        Category category = this.categoryMapper.CategoryDtoToCategory(this.categoryService.findById(givenPost.getPostId()));
+        Post post;
+        if(givenPost.getPostId() != null){
+            post = new Post(
+                    givenPost.getPostId(),
+                    givenPost.getTitle(),
+                    givenPost.getSummary(),
+                    givenPost.getContent(),
+                    givenPost.getViews(),
+                    category,
+                    date
+            );
+        }else{
+            post = new Post(
+                    givenPost.getTitle(),
+                    givenPost.getSummary(),
+                    givenPost.getContent(),
+                    givenPost.getViews(),
+                    category,
+                    date
+            );
+        }
+        postRepository.save(post);
         if(postRepository.findById(post.getPostId()).orElse(null) == null){
             return false;
-        }else{
+        }else {
             return true;
         }
+
     }
     public boolean deleteById(Integer postId){
         Post post = this.postRepository.findById(postId).orElse(null);

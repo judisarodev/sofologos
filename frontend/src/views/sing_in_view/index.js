@@ -44,24 +44,26 @@ const SingIn = () => {
 
     return(
         <ViewContainer>
-            {failed && <Failed />}
-            <Form textButton={'Iniciar sesión'} title={'Ingresa con tus credenciales'}>
-                <Input label={'Nombre de usuario'} type={'text'} placeholder={'usuario'} setInfo={setUsername}/>
-                <Input label={'Constraseña'} type={'password'} placeholder={'constraseña'} setInfo={setPassword}/>
-                <SubmitButton action={login} text={'INGRESAR'}/>
-                
-                <Link to={'/admin'}> 
-                    <p className="login__go-to-admin">Quiero conocer la interaz de administrador</p>
-                </Link>
-            </Form>
+            <div style={{ marginTop: '60px' }}>
+                <Failed failed={failed}/>
+                <Form textButton={'Iniciar sesión'} title={'Ingresa con tus credenciales'}>
+                    <Input label={'Nombre de usuario'} type={'text'} placeholder={'usuario'} setInfo={setUsername}/>
+                    <Input label={'Constraseña'} type={'password'} placeholder={'constraseña'} setInfo={setPassword}/>
+                    <SubmitButton action={login} text={'INGRESAR'}/>
+                    
+                    <Link to={'/admin'}> 
+                        <p className="login__go-to-admin">Quiero conocer la interaz de administrador</p>
+                    </Link>
+                </Form>
+            </div>
         </ViewContainer>
     )
 }
 
-const Failed = () => {
+const Failed = ({ failed }) => {
     return(
-        <div>
-            No fue posible iniciar seción
+        <div style={{ height: '80px' }}>
+            <p className="text-center">{ failed && 'No fue posible iniciar sesión'}</p>
         </div>
     );
 }

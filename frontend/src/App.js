@@ -10,23 +10,27 @@ import { AdminView } from './views/admin_view/index';
 import { JwtProvider } from "./context/JwtProvider";
 import { PostsCategoriesProvider } from './context/PostsCategoriesProvider';
 import { useState } from 'react';
+import { EditPostView } from './views/edit_post_view';
+import { PostView } from './views/post_view';
 
 function App() {
-  const [admin, setAdmin] = useState(false); 
-
   return (
     <PostsCategoriesProvider>
+      <JwtProvider>
       <BrowserRouter>
         <BrandingBar />
         <Navbar />
         <Routes>
           <Route path='/' element={<HomeView/>} />
           <Route path='/about' element={<AboutUsView />} />
-          <Route path='/login' element={<JwtProvider><SingIn /></JwtProvider>} />
-          <Route path='/admin' element={<JwtProvider> <AdminView /></JwtProvider>} />
+          <Route path='/login' element={<SingIn />} />
+          <Route path='/admin' element={ <AdminView />} />
+          <Route path='/edit-post' element={ <EditPostView />} />
+          <Route path='/post-view' element={ <PostView />} /> 
         </Routes>
         <Footer />
       </BrowserRouter>
+      </JwtProvider>
     </PostsCategoriesProvider>
   );
 }

@@ -1,11 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 
-const PostsCategoriesContext = createContext();
+const  PostsCategoriesContext = createContext();
 
 const PostsCategoriesProvider = ({ children }) => {
     
     const [allPosts, setAllPosts] = useState(null);
     const [categories, setCategories] = useState([]);
+    const [postId, setPostId] = useState({});
 
     useEffect(()=>{
         fetch('http://localhost:9090/category/get-all', {
@@ -27,7 +28,8 @@ const PostsCategoriesProvider = ({ children }) => {
             setAllPosts(null); 
             setCategories(null); 
         });
-    }, []);
+    }, [categories]);
+
 
     useEffect(() => {
         fetch(
@@ -49,11 +51,10 @@ const PostsCategoriesProvider = ({ children }) => {
             console.log(e);
             setAllPosts(null); 
         });
-    }, []);
-
-
+    }, [allPosts]);
+    
     return(
-        <PostsCategoriesContext.Provider value={{ allPosts, categories }}>
+        <PostsCategoriesContext.Provider value={{ allPosts, setAllPosts, categories, setCategories, postId, setPostId }}>
             { children }
         </PostsCategoriesContext.Provider>
     );

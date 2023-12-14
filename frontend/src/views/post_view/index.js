@@ -1,44 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ViewContainer } from "../../components/view_container";
+import { PostsCategoriesContext } from "../../context/PostsCategoriesProvider";
 
-const PostView = ({postId}) => {
+const PostView = () => {
 
-    const [post, setPost] = useState(
-        {
-            postId: 1,
-            title: "",
-            category: "",
-            summary: "",
-            content: "",
-            likes: 0,
-            views: 0,
-            username: "",
-            date: ""
-        }
-    );
+    const { postId } = useContext(PostsCategoriesContext); 
 
+    
     useEffect(() => {
-        const url = 'http://localhost:9090/posts/get-by-id/' + postId;
+        const url = 'http://localhost:9090/posts/get-by-id/' + postId.postId;
         const request = {
             method: 'GET',
+            credentials: 'include',  
             headers: {
-                'Content-Type': 'application-json'
+                'Content-Type': 'application-json',
             }
         };
         fetch(url, request)
         .then((response) => {
             if(!response.ok){
-                throw new Error ("No se pudo hacer contacto con el servidor");
+                throw new Error ("No se pudo hacer contacto con el servidor " + response);
             }else{
                 return response.json();
             }
         })
         .then((data) => {
             setPost(data); 
+        })
+        .catch((error) => {
+            console.log("error es:: " + error);
         });
 
     }, [postId]);
-
+    
+    const [post, setPost] = useState(
+        {
+            postId: '',
+            title: '',
+            category: '',
+            summary: '',
+            content: '',
+            likes: '',
+            views: '',
+            username: '',
+            date: ''
+        }
+    );
     return(
         <ViewContainer>
             <div className="row justify-content-center m-3">

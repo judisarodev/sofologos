@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsEye } from 'react-icons/bs';
 import './index.css';
 import { LuPencil } from "react-icons/lu";
 import { AiOutlineDelete } from "react-icons/ai";
+import { PostsCategoriesContext } from '../../context/PostsCategoriesProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const PostCard = ({ info }) => {
     const { postId, title, date, summary, views } = info;
+    const { setPostId } = useContext(PostsCategoriesContext);
+    const navigate = useNavigate();
     
     let summaryText = summary; 
     if(summary.length > 300){
@@ -37,6 +41,8 @@ const PostCard = ({ info }) => {
         .catch((err) => {
             console.log(err);
         });
+        setPostId(info);
+        navigate('/post-view');
     }
 
     return(
@@ -58,21 +64,30 @@ const PostCard = ({ info }) => {
     );
 }
 
+const deletePost = () => {
 
+}
 
 const AdminPostCard = ({ info }) => {
     const { title } = info;
+    const { setPostId } = useContext(PostsCategoriesContext);
+    const navigate = useNavigate();
+
+    function setUpPost(){
+        setPostId(info);   
+        navigate('/edit-post'); 
+    }
 
     return(
         <div className='card--container--admin d-flex align-items-center justify-content-between'>
-            <div className='admin__icon admin__icon--edit'>
+            <div className='admin__icon admin__icon--edit'  onClick={setUpPost}>
                 <LuPencil size={16} color='white'/>
             </div>
             <div className='d-flex flex-column justify-content-end p-3'>
                 <p className='m-0 text-center'>{ title }</p>
             </div>
             <div className=' admin__icon admin__icon--delete'>
-                <AiOutlineDelete  size={16} color='white'/>      
+                <AiOutlineDelete  size={16} color='white' onClick={deletePost}/>      
             </div>
         </div>
     );
