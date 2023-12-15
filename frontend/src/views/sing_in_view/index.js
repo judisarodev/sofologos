@@ -63,7 +63,7 @@ const SingIn = () => {
 const Failed = ({ failed }) => {
     return(
         <div style={{ height: '80px' }}>
-            <p className="text-center">{ failed && 'No fue posible iniciar sesión'}</p>
+            <p className="text-center" style={{ color: 'red'}}>{ failed && 'USUARIO O CONTRASEÑA INCORRECTOS'}</p>
         </div>
     );
 }

@@ -24,10 +24,12 @@ const SingUpForm = () => {
         });
     }
     return(
-        <Form textButton={'Enviar'} action={submit} title={'No te pierdas una sola publicación'}>
-            <Input label={'Correo electronico'} type={'email'} placeholder={'email@mail.com'} setInfo={setEmail}/>
-            <SubmitButton action={catchEmail} text={'ENVIAR'} />
-        </Form>
+        <div className="container--sing-up-form">
+            <Form textButton={'Enviar'} action={submit} title={'No te pierdas una sola publicación'}>
+                <Input label={'Correo electronico'} type={'email'} placeholder={'email@mail.com'} setInfo={setEmail}/>
+                <SubmitButton action={catchEmail} text={'ENVIAR'} />
+            </Form>
+        </div>
     );
 }
 

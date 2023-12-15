@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 const AdminView = () => {
 
-    const { setPostId } = useContext(PostsCategoriesContext);
+    const { setFocusedPost } = useContext(PostsCategoriesContext);
     const navigate = useNavigate(); 
 
     function createPost(){ 
-        setPostId({});
+        setFocusedPost({});
         navigate('/edit-post');
     }
     return(

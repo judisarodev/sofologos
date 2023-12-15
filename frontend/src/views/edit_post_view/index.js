@@ -1,43 +1,47 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UnauthorizeBanner } from "../../components/unauthorize_banner";
 import { PostsCategoriesContext } from "../../context/PostsCategoriesProvider";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { JwtContext } from "../../context/JwtProvider";
+import { Categories } from "../../components/categories";
 
 const EditPostView = () => {
-    const { postId, setAllPosts, setCategories } = useContext(PostsCategoriesContext);
-    const navigate = useNavigate();
-    const { jwt } = useContext(JwtContext); 
-    const [formData, setFormData] = useState(
-        Object.entries(postId).length !== 0 ? {
-        category: postId.category,
-        content: postId.content,
-        date: {
-            date: postId.date.date,
-            month: postId.date.month,
-            year: postId.date.year,
-        },
-        postId: postId.postId,
-        summary: postId.summary,
-        title: postId.title,
-        username: postId.username,
-        views: postId.views
-      }
-      : {
-        category: '',
-        content: '',
-        date: {
+    const { focusedPost } = useContext(PostsCategoriesContext);
+    const { 
+        title, 
+        category, 
+        content, 
+        summary, 
+        postId, 
+        username, 
+        views, 
+        date = {
             date: (new Date()).getDate(),
             month: (new Date()).getMonth() + 1,
             year: (new Date()).getFullYear(),
-        },
-        summary: '',
-        title: '',
-        username: '0',
-        views: '0'
+        } } = focusedPost; 
+        
+    const [currentCategory, setCurrentCategory] = useState(category);
+    const navigate = useNavigate();
+    const { jwt } = useContext(JwtContext); 
+    const [formData, setFormData] = useState(
+        {
+            postId: postId,
+            category: category,
+            content: content,
+            date: date,
+            summary: summary,
+            title: title,
+            username: username,
+            views: views
       }
-      );
+    );
+
+    useEffect(() => {
+        
+    }, []);
+
     function goToAdminView(){
         navigate('/admin');
     }
@@ -50,27 +54,24 @@ const EditPostView = () => {
     }
 
     const submit = () => {
-        console.log(formData);
+        formData.category = currentCategory; 
+        const data = JSON.stringify(formData); 
         fetch('http://localhost:9090/posts/save', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + jwt
+                'Authorization': 'Bearer ' + jwt    
             },
-            body: JSON.stringify(formData)
+            body: data
         })
-        .then((response) => {
+        .then(() => {
             navigate('/admin')
-            console.log(response); 
-            if(response){
-                setAllPosts(null);
-                setCategories(null); 
-            }
         })
         .catch((error) => {
             console.log(error); 
         });
     }
+
 
     return(
         <>
@@ -82,8 +83,7 @@ const EditPostView = () => {
                     <p className="m-0">Regresar</p>
                 </button>
 
-                <label className="sing-up-form__label">{ 'Categoría' }</label>
-                <input name="category" type={'text'} className="form-control" placeholder={'Categoría'} value={formData.category} onChange={handleChange}/>
+                <Categories forceDropDown={true} setCategory={setCurrentCategory} showSearchBar={false} defaultCategory={category}/>
 
                 <label className="sing-up-form__label">{ 'Título' }</label>
                 <input name="title" type={'text'} className="form-control" placeholder={'Título'} value={formData.title} onChange={handleChange}/>

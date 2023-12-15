@@ -1,14 +1,3 @@
 .container--sing-up-form{
-   max-width: 710px; 
-   margin: auto;
-}
-.sing-up-form__label{
-    color: #757575;
-    font-size: 12px;
-}
-.button--sumbit__text{
-    color: white;
-}
-.button--sumbit{
-    margin-top: 10px;
+   margin-top: 80px;
 }

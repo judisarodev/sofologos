@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const PostCard = ({ info }) => {
-    const { postId, title, date, summary, views } = info;
-    const { setPostId } = useContext(PostsCategoriesContext);
+const PostCard = ({ post }) => {
+    const { postId, title, date, summary, views } = post;
+    const { setFocusedPost } = useContext(PostsCategoriesContext);
     const navigate = useNavigate();
     
     let summaryText = summary; 
@@ -41,7 +41,7 @@ const PostCard = ({ info }) => {
         .catch((err) => {
             console.log(err);
         });
-        setPostId(info);
+        setFocusedPost(post);
         navigate('/post-view');
     }
 
@@ -68,13 +68,13 @@ const deletePost = () => {
 
 }
 
-const AdminPostCard = ({ info }) => {
-    const { title } = info;
-    const { setPostId } = useContext(PostsCategoriesContext);
+const AdminPostCard = ({ post }) => {
+    const { title } = post;
+    const { setFocusedPost } = useContext(PostsCategoriesContext);
     const navigate = useNavigate();
 
     function setUpPost(){
-        setPostId(info);   
+        setFocusedPost(post);   
         navigate('/edit-post'); 
     }
 

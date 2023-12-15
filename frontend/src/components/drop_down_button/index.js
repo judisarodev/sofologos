@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import './index.css';
 
-const DropDownButton = ({categories, getCategory}) => {
+const DropDownButton = ({categories, getCategory, defaultCategory}) => {
 
-    const [currentCategory, setCurrentCategory] = useState('Todas las categorías');
+    const [currentCategory, setCurrentCategory] = useState(defaultCategory ? defaultCategory :'Todas las categorías');
 
     const setCategory = (e) => {
         setCurrentCategory(e.target.textContent);

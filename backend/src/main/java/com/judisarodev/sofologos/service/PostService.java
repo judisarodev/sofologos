@@ -42,7 +42,8 @@ public class PostService {
     }
     public boolean save(PostDto givenPost) {
         Calendar date = this.postMapper.mapDateDtoToCalendar(givenPost.getDate());
-        Category category = this.categoryMapper.CategoryDtoToCategory(this.categoryService.findById(givenPost.getPostId()));
+        Category category = this.categoryMapper.CategoryDtoToCategory(this.categoryService.findByName(givenPost.getCategory()));
+        System.out.println(category.getName());
         Post post;
         if(givenPost.getPostId() != null){
             post = new Post(
