@@ -29,6 +29,14 @@ public class PostService {
     public ArrayList<PostDto> getAll() {
         ArrayList<PostDto> postsDto = new ArrayList<>();
         for(Post p: postRepository.findAll()) {
+                postsDto.add(this.postMapper.toPostDto(p));
+
+        }
+        return postsDto;
+    }
+    public ArrayList<PostDto> getPosts() {
+        ArrayList<PostDto> postsDto = new ArrayList<>();
+        for(Post p: postRepository.findAll()) {
             if(p.getActive() == true) {
                 postsDto.add(this.postMapper.toPostDto(p));
             }

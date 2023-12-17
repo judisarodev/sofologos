@@ -5,14 +5,23 @@ import { LuPencil } from "react-icons/lu";
 import { PostsCategoriesContext } from "../../context/PostsCategoriesProvider";
 import { AdminPostCard, PostCard } from "../post_card";
 
+
 const PostsGallery = ( { adminPost = false } ) => {
     const { allPosts, setAllPosts } = useContext(PostsCategoriesContext);
     const [category, setCategory] = useState('');
     const [title, setTitle] = useState('');
 
     useEffect(() => {
+
+        let url = "";
+        if(adminPost){
+            url = 'http://localhost:9090/posts/get-all';
+        }else{
+            url = 'http://localhost:9090/posts/get-posts';
+        }
+
         fetch(
-            'http://localhost:9090/posts/get-all' , {
+            url , {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

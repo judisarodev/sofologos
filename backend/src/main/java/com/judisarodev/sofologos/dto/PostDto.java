@@ -97,7 +97,7 @@ public class PostDto {
         this.date = date;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 

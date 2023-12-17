@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BsEye } from 'react-icons/bs';
 import './index.css';
 import { LuPencil } from "react-icons/lu";
-import { AiOutlineDelete } from "react-icons/ai";
 import { PostsCategoriesContext } from '../../context/PostsCategoriesProvider';
+import { JwtContext } from '../../context/JwtProvider';
 import { useNavigate } from 'react-router-dom';
-
-
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const PostCard = ({ post }) => {
     const { postId, title, date, summary, views } = post;
@@ -64,18 +64,35 @@ const PostCard = ({ post }) => {
     );
 }
 
-const deletePost = () => {
-
-}
-
 const AdminPostCard = ({ post }) => {
     const { title } = post;
+    const [active, setActive] = useState(post.isActive);
     const { setFocusedPost } = useContext(PostsCategoriesContext);
+    const { jwt } = useContext(JwtContext);
+
     const navigate = useNavigate();
 
     function setUpPost(){
         setFocusedPost(post);   
         navigate('/edit-post'); 
+    }
+    
+    const showHide = () => {
+        let url = '';
+        if(active){
+           setActive(false);
+           url = "http://localhost:9090/posts/hide/" + post.postId;
+        }else{
+            setActive(true);
+            url = "http://localhost:9090/posts/show/" + post.postId;
+        }
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + jwt
+            }
+        });
     }
 
     return(
@@ -86,8 +103,8 @@ const AdminPostCard = ({ post }) => {
             <div className='d-flex flex-column justify-content-end p-3'>
                 <p className='m-0 text-center'>{ title }</p>
             </div>
-            <div className=' admin__icon admin__icon--delete'>
-                <AiOutlineDelete  size={16} color='white' onClick={deletePost}/>      
+            <div className=' admin__icon admin__icon--delete' onClick={showHide}>
+                {active ? <IoEyeOutline /> : <FaRegEyeSlash />}
             </div>
         </div>
     );
