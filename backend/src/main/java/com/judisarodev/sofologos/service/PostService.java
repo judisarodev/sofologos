@@ -26,16 +26,25 @@ public class PostService {
         this.categoryService = categoryService;
         this.categoryMapper = categoryMapper;
     }
-    public int getNumberOfPosts(){
-        return postRepository.findAll().size();
-    }
     public ArrayList<PostDto> getAll() {
         ArrayList<PostDto> postsDto = new ArrayList<>();
         for(Post p: postRepository.findAll()) {
-            postsDto.add(this.postMapper.toPostDto(p));
+            if(p.getActive() == true) {
+                postsDto.add(this.postMapper.toPostDto(p));
+            }
         }
         return postsDto;
     }
+    @Transactional
+    public void hidePost(Integer postId){
+        this.postRepository.hidePost(postId);
+    }
+
+    @Transactional
+    public void showPost(Integer postId){
+        this.postRepository.showPost(postId);
+    }
+
     public PostDto getById(Integer postId){
         Post post = this.postRepository.findById(postId).orElse(null);
         return this.postMapper.toPostDto(post);

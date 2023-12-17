@@ -9,6 +9,7 @@ public class PostDto {
     private Integer views;
     private String username;
     private DateDto date;
+    private Boolean isActive;
     public PostDto(){}
     public PostDto(String title, String category, String summary, String content, Integer views, String username, DateDto date) {
         this.title = title;
@@ -18,8 +19,9 @@ public class PostDto {
         this.views = views;
         this.username = username;
         this.date = date;
+        this.isActive = true;
     }
-    public PostDto(Integer postId, String title, String category, String summary, String content, Integer views, String username, DateDto date) {
+    public PostDto(Integer postId, String title, String category, String summary, String content, Integer views, String username, DateDto date, Boolean isActive) {
         this.postId = postId;
         this.title = title;
         this.category = category;
@@ -28,6 +30,7 @@ public class PostDto {
         this.views = views;
         this.username = username;
         this.date = date;
+        this.isActive = isActive;
     }
 
     public String getTitle() {
@@ -92,5 +95,13 @@ public class PostDto {
 
     public void setDate(DateDto date) {
         this.date = date;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

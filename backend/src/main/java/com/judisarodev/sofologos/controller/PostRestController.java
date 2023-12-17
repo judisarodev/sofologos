@@ -17,29 +17,18 @@ public class PostRestController {
     public ResponseEntity<ArrayList<PostDto>> getAll(){
         return ResponseEntity.ok(this.postService.getAll());
     }
-    @GetMapping("/get-number-of-posts/")
-    public int getNumberOfPosts(){
-        return postService.getNumberOfPosts();
-    }
     @GetMapping("/get-by-id/{id}")
     public ResponseEntity<PostDto> findById(@PathVariable Integer id){
         return ResponseEntity.ok(this.postService.getById(id));
     }
-    /*
-    * {
-    "title": "t",
-    "category": "1",
-    "summary": "s",
-    "content": "c",
-    "views": 0,
-    "username": "1",
-    "date":{
-        "date":"01",
-        "month": "12",
-        "year": "2023"
+    @GetMapping("hide/{postId}")
+    public void hidePost(@PathVariable Integer postId){
+        this.postService.hidePost(postId);
     }
-}
-    * */
+    @GetMapping("show/{postId}")
+    public void showPost(@PathVariable Integer postId){
+        this.postService.showPost(postId);
+    }
     @PutMapping("/save")
     public ResponseEntity<Boolean> save(@RequestBody PostDto post){
         return ResponseEntity.ok(this.postService.save(post));

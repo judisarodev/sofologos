@@ -21,6 +21,8 @@ public class Post {
     private Calendar date;
     @Column(name = "user_id")
     private String userId = "1";
+    @Column(name = "is_active", columnDefinition = "TINYINT")
+    private Boolean isActive;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
@@ -36,6 +38,7 @@ public class Post {
         this.views = views;
         this.category = category;
         this.date = date;
+        this.isActive = true;
     }
 
     public Post(String title, String summary, String content, Integer views, Category category, Calendar date) {
@@ -45,6 +48,7 @@ public class Post {
         this.views = views;
         this.category = category;
         this.date = date;
+        this.isActive = true;
     }
     public Integer getPostId() {
         return postId;
@@ -111,5 +115,13 @@ public class Post {
     }
     public String toString(){
         return(title + " " + summary + " " + category);
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

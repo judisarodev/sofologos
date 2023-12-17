@@ -17,4 +17,12 @@ public interface PostRepository extends ListCrudRepository<Post, Integer> {
     @Modifying
     @Query("UPDATE Post SET views = views + 1 WHERE postId = :postId")
     void addView(Integer postId);
+
+    @Modifying
+    @Query("UPDATE Post SET isActive = false WHERE postId = :postId")
+    void hidePost(Integer postId);
+
+    @Modifying
+    @Query("UPDATE Post SET isActive = true WHERE postId = :postId")
+    void showPost(Integer postId);
 }
